@@ -2,11 +2,11 @@ package com.benefitseller.models;
 
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Set;
 
@@ -15,9 +15,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@EntityScan
-@Table(name="merchant")
-public class Merchant {
+@Table(name="category")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +25,6 @@ public class Merchant {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "category")
-    private Category category;
-
-    @OneToMany(mappedBy = "merchant")
-    private Set<Transaction> transactions;
-
-    @ManyToMany(mappedBy = "merchants")
-    private Set<CustomerCompany> customerCompanies;
-
+    @OneToMany(mappedBy = "category")
+    private Set<Merchant> merchants;
 }

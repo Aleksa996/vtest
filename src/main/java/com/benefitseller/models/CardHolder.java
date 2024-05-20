@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,9 +18,22 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @Table(name="card_holder")
 public class CardHolder {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
-    @Enumerated(EnumType.STRING)
-    private UserType userType;
+
+    @Column(nullable = false)
+    private String userType;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_company_id")
+    private CustomerCompany customerCompany;
+
+    @OneToMany(mappedBy = "cardHolder")
+    private Set<Card> cards;
 }

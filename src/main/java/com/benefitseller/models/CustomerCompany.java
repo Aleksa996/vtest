@@ -1,42 +1,32 @@
 package com.benefitseller.models;
 
 
+import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-
-import jakarta.persistence.*;
-
 import java.util.Set;
-
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@EntityScan
-@Table(name="card")
-public class Card {
+@Table(name="customer_company")
+public class CustomerCompany {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String cardNumber;
-
     @Column(nullable = false)
-    private Double balance;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "card_holder_id")
-    private CardHolder cardHolder;
-
-    @OneToMany(mappedBy = "card")
-    private Set<Transaction> transactions;
+    @OneToMany(mappedBy = "customerCompany")
+    private Set<CardHolder> cardHolders;
 
 }
