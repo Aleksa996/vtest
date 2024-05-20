@@ -16,7 +16,7 @@ import java.util.Set;
 @Builder
 @Entity
 @EntityScan
-@Table(name="merchant")
+@Table(name="merchants")
 public class Merchant {
 
     @Id
@@ -27,13 +27,18 @@ public class Merchant {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "category")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @OneToMany(mappedBy = "merchant")
     private Set<Transaction> transactions;
 
-    @ManyToMany(mappedBy = "merchants")
+    @ManyToMany
+    @JoinTable(
+            name = "customer_merchant",
+            joinColumns = @JoinColumn(name = "merchant_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id")
+    )
     private Set<CustomerCompany> customerCompanies;
 
 }

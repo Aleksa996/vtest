@@ -9,6 +9,7 @@ import com.benefitseller.repositories.MerchantRepository;
 import com.benefitseller.repositories.TransactionRepository;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -28,19 +29,19 @@ public class TransactionService {
 
         Card card = cardOpt.get();
         if (card.getBalance() < amount) {
-            return saveTransaction(card, amount, merchantId, false);
+            return saveTransaction(card, amount, merchantId, "false");
         }
 
         card.setBalance(card.getBalance() - amount);
         cardRepository.save(card);
-        return saveTransaction(card, amount, merchantId, true);
+        return saveTransaction(card, amount, merchantId, "true");
     }
 
-    private Transaction saveTransaction(Card card, Double amount, Long merchantId, Boolean success) {
+    private Transaction saveTransaction(Card card, Double amount, Long merchantId, String success) {
         Transaction transaction = new Transaction();
         transaction.setCard(card);
         transaction.setAmount(amount);
-        transaction.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        transaction.setTimestamp(LocalDateTime.now());
         transaction.setSuccess(success);
         transaction.setMerchant(merchantRepository.findById(merchantId).orElseThrow(() -> new RuntimeException("Merchant not found")));
         return transactionRepository.save(transaction);
