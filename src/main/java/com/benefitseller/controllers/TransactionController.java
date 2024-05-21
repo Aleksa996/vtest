@@ -20,7 +20,7 @@ public class TransactionController {
 
     @PostMapping
     public ResponseEntity<Transaction> processTransaction(@RequestBody TransactionRequest request) {
-        Transaction transaction = transactionService.processTransaction(request.getCardNumber(), request.getAmount(), request.getMerchantId());
+        Transaction transaction = transactionService.processTransaction(request.getCardNumber(), request.getAmount(), request.getMerchantId(), request.getCategoryId());
         return ResponseEntity.ok(transaction);
     }
 

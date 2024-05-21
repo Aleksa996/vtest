@@ -28,8 +28,8 @@ CREATE TABLE category (
 CREATE TABLE merchant (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    category INT,
-    FOREIGN KEY (category) REFERENCES category(id)
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES category(id)
 );
 
 CREATE TABLE customer_merchant (

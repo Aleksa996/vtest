@@ -2,6 +2,7 @@ package com.benefitseller.services;
 
 import com.benefitseller.models.Card;
 import com.benefitseller.models.Transaction;
+import com.benefitseller.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.benefitseller.repositories.CardRepository;
@@ -23,7 +24,10 @@ public class TransactionService {
     @Autowired
     private MerchantRepository merchantRepository;
 
-    public Transaction processTransaction(String cardNumber, Double amount, Long merchantId) {
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    public Transaction processTransaction(String cardNumber, Double amount, Long merchantId, Long categoryId) {
         Optional<Card> cardOpt = cardRepository.findByCardNumber(cardNumber);
         if (cardOpt.isEmpty()) {
             throw new RuntimeException("Card not found");
@@ -31,15 +35,15 @@ public class TransactionService {
 
         Card card = cardOpt.get();
         if (card.getBalance() < amount) {
-            return saveTransaction(card, amount, merchantId, "false");
+            return saveTransaction(card, amount, merchantId, categoryId, "false");
         }
 
         card.setBalance(card.getBalance() - amount);
         cardRepository.save(card);
-        return saveTransaction(card, amount, merchantId, "true");
+        return saveTransaction(card, amount, merchantId, categoryId, "true");
     }
 
-    private Transaction saveTransaction(Card card, Double amount, Long merchantId, String success) {
+    private Transaction saveTransaction(Card card, Double amount, Long merchantId, Long categoryId, String success) {
         Transaction transaction = new Transaction();
         transaction.setCard(card);
         transaction.setAmount(amount);

@@ -7,4 +7,5 @@ public class TransactionRequest {
     private String cardNumber;
     private Double amount;
     private Long merchantId;
+    private Long categoryId;
 }

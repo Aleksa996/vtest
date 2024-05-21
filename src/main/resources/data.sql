@@ -28,7 +28,7 @@ VALUES
 (3, 'RECREATION'),
 (4, 'EDUCATION');
 
-INSERT INTO merchant (id, name, category)
+INSERT INTO merchant (id, name, category_id)
 VALUES
 (1, 'Starbucks', 1),
 (2, 'Amazon', 2),
