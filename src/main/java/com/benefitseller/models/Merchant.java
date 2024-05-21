@@ -16,7 +16,7 @@ import java.util.Set;
 @Builder
 @Entity
 @EntityScan
-@Table(name="merchants")
+@Table(name="merchant")
 public class Merchant {
 
     @Id

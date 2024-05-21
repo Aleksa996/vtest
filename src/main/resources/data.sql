@@ -5,21 +5,21 @@ VALUES
 
 INSERT INTO card_holder (id, username, password, user_type, customer_company_id)
 VALUES
-(1, 'mac', '$2a$12$GdSOggI/DgVJJFBfDpDTm.gWFXuXAorSqDwX0dezuz1M7r3firHQa', 'STANDARD', 1), -- TODO encrypt pwd https://bcrypt-generator.com/
+(1, 'mac', '$2a$12$GdSOggI/DgVJJFBfDpDTm.gWFXuXAorSqDwX0dezuz1M7r3firHQa', 'STANDARD', 1), -- https://bcrypt-generator.com/
 (2, 'jane', 'password123', 'PREMIUM', 1),
 (3, 'thirduser', 'adminpass', 'PLATINUM', 1),
-(4, 'mac123', '$2a$12$GdSOggI/DgVJJFBfDpDTm.gWFXuXAorSqDwX0dezuz1M7r3firHQa', 'STANDARD', 2), -- TODO encrypt pwd https://bcrypt-generator.com/
+(4, 'mac123', '$2a$12$GdSOggI/DgVJJFBfDpDTm.gWFXuXAorSqDwX0dezuz1M7r3firHQa', 'STANDARD', 2),
 (5, 'jane324', 'password123', 'PREMIUM', 2),
 (6, 'sixuser', 'adminpass', 'PLATINUM', 2);
 
 INSERT INTO card (id, card_number, balance, card_holder_id)
 VALUES
-(1, '1234567890123456', 1000.00, 1),
-(2, '9876543210987654', 2500.00, 2),
-(3, '5555666677778888', 3000.00, 3),
-(4, '444455556666', 1500.00, 4),
-(5, '4444555566', 1500.00, 5),
-(6, '4444555', 1500.00, 6); -- TODO unique card number u schema.sql
+(1, '12', 1000.00, 1),
+(2, '13', 2500.00, 2),
+(3, '14', 3000.00, 3),
+(4, '15', 1500.00, 4),
+(5, '16', 1500.00, 5),
+(6, '17', 1500.00, 6);
 
 INSERT INTO category (id, name)
 VALUES

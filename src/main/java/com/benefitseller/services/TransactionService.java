@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 import com.benefitseller.repositories.CardRepository;
 import com.benefitseller.repositories.MerchantRepository;
 import com.benefitseller.repositories.TransactionRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
