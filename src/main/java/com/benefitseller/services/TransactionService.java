@@ -24,8 +24,11 @@ public class TransactionService {
     @Autowired
     private MerchantRepository merchantRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    public TransactionService(TransactionRepository transactionRepository,CardRepository cardRepository,MerchantRepository merchantRepository) {
+        this.transactionRepository = transactionRepository;
+        this.cardRepository = cardRepository;
+        this.merchantRepository = merchantRepository;
+    }
 
     public Transaction processTransaction(String cardNumber, Double amount, Long merchantId, Long categoryId) {
         Optional<Card> cardOpt = cardRepository.findByCardNumber(cardNumber);

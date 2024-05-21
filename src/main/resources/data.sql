@@ -49,10 +49,10 @@ VALUES
 (2, 3),
 (2, 4);
 
-INSERT INTO `transaction` (id, timestamp, amount, card_id, merchant_id, success)
+INSERT INTO `transaction` (timestamp, amount, card_id, merchant_id, success)
 VALUES
-(1, '2024-05-18 10:00:00', 20.00, 1, 1, 'SUCCESS'),
-(2, '2024-05-18 11:00:00', 150.00, 2, 2, 'SUCCESS'),
-(3, '2024-05-18 12:00:00', 50.00, 3, 3, 'FAIL'),
-(4, '2024-05-18 13:00:00', 200.00, 4, 4, 'SUCCESS'),
-(5, '2024-05-18 14:00:00', 75.00, 1, 2, 'SUCCESS');
+('2024-05-18 10:00:00', 20.00, 1, 1, 'SUCCESS'),
+('2024-05-18 11:00:00', 150.00, 2, 2, 'SUCCESS'),
+('2024-05-18 12:00:00', 50.00, 3, 3, 'FAIL'),
+('2024-05-18 13:00:00', 200.00, 4, 4, 'SUCCESS'),
+('2024-05-18 14:00:00', 75.00, 1, 2, 'SUCCESS');

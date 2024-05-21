@@ -50,7 +50,7 @@ CREATE TABLE customer_category_benefit (
 );
 
 CREATE TABLE `transaction` (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     timestamp DATETIME NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
     card_id INT,
@@ -59,3 +59,5 @@ CREATE TABLE `transaction` (
     FOREIGN KEY (card_id) REFERENCES card(id),
     FOREIGN KEY (merchant_id) REFERENCES merchant(id)
 );
+
+ALTER TABLE public.transaction ADD COLUMN IF NOT EXISTS id SERIAL PRIMARY KEY;
